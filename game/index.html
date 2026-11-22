@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIGIL CLASH</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Title Screen -->
+      <section id="screen-title" class="screen screen-title">
+        <div class="title-card">
+          <div class="title-crest" aria-hidden="true">▲ ● ■ ⬟</div>
+          <h1 class="title-heading">SIGIL CLASH</h1>
+          <p class="title-subtitle">
+            A duel of four houses — read Vex's intent, answer with combos.
+          </p>
+          <div id="house-legend" class="house-legend" aria-label="House Legend"></div>
+          <p class="title-howto">
+            Click a card to play it · Keys 1–5 play · Enter ends the turn · Watch the INTENT badge:
+            it is what Vex will do next.
+          </p>
+          <button id="btn-start" type="button" class="btn-primary">Enter the Duel</button>
+        </div>
+      </section>
+
+      <!-- Duel Table Screen -->
+      <section id="screen-table" class="screen screen-table" hidden>
+        <header class="plate plate-rival">
+          <div class="duelist-id">
+            <div class="avatar-disc" aria-hidden="true">V</div>
+            <div class="duelist-meta">
+              <div class="duelist-name-row">
+                <span class="duelist-name">VEX</span>
+                <span id="rival-weak" class="weak-badge" hidden>WEAK -2</span>
+              </div>
+              <div class="hp-row">
+                <div class="hp-bar" role="progressbar" aria-label="Vex HP">
+                  <div id="rival-hp-fill" class="hp-fill"></div>
+                  <span id="rival-hp-text" class="hp-text">20 / 20</span>
+                </div>
+                <span id="rival-shield" class="shield-badge" hidden>🛡 0</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="intent-badge" class="intent-badge" aria-live="polite"></div>
+
+          <div class="rival-hand-wrap">
+            <div id="rival-hand" class="rival-hand"></div>
+            <span id="rival-hand-count" class="count-pill">5 cards</span>
+          </div>
+        </header>
+
+        <main class="table-center">
+          <div class="stage-wrap">
+            <div id="stage" class="stage"></div>
+            <div id="combo-banner" class="combo-banner" hidden></div>
+          </div>
+          <ol id="log" class="combat-log" aria-label="Combat Log"></ol>
+        </main>
+
+        <footer class="table-bottom">
+          <div class="plate plate-player">
+            <div class="duelist-id">
+              <div class="duelist-meta">
+                <div class="duelist-name-row">
+                  <span class="duelist-name">YOU</span>
+                  <span id="player-weak" class="weak-badge" hidden>WEAK -2</span>
+                </div>
+                <div class="hp-row">
+                  <div class="hp-bar" role="progressbar" aria-label="Your HP">
+                    <div id="player-hp-fill" class="hp-fill"></div>
+                    <span id="player-hp-text" class="hp-text">20 / 20</span>
+                  </div>
+                  <span id="player-shield" class="shield-badge" hidden>🛡 0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="player-resources">
+              <div id="energy" class="energy-pips" aria-label="Energy"></div>
+              <div class="pile-counts">
+                <span id="deck-count" class="count-pill">Deck: 17</span>
+                <span id="discard-count" class="count-pill">Discard: 0</span>
+              </div>
+            </div>
+
+            <button id="btn-end" type="button" class="btn-end">End Turn</button>
+          </div>
+
+          <div id="hand" class="hand" aria-label="Your Hand"></div>
+        </footer>
+      </section>
+
+      <!-- Game Over Screen -->
+      <section id="screen-over" class="screen screen-over" hidden>
+        <div id="flourish" class="flourish" aria-hidden="true"></div>
+        <div class="over-card">
+          <h1 id="over-title" class="over-title">VICTORY</h1>
+          <p id="over-stats" class="over-stats"></p>
+          <button id="btn-again" type="button" class="btn-primary">Duel Again</button>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

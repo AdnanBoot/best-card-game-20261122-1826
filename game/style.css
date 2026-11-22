@@ -1,0 +1,783 @@
+/* ==========================================================================
+   SIGIL CLASH — Moody Duelling Table Stylesheet
+   ========================================================================== */
+
+:root {
+  --felt-dark: #0e1813;
+  --felt-mid: #162720;
+  --felt-light: #1e352b;
+  --brass: #d4af37;
+  --brass-dim: #8b7225;
+  --parchment: #f4ebd9;
+  --parchment-edge: #dfd0b4;
+  --ink: #1e1915;
+  --ink-muted: #5a5046;
+  --hp-red: #c0392b;
+  --hp-red-hi: #e74c3c;
+  --shield-blue: #2b7bb9;
+  --text-light: #f2ede2;
+  --text-dim: #b4c2ba;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 42%, var(--felt-light) 0%, var(--felt-mid) 48%, var(--felt-dark) 100%);
+  color: var(--text-light);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.screen[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn-primary,
+.btn-end {
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid var(--brass);
+  background: linear-gradient(180deg, #e5c354 0%, #b98f22 100%);
+  color: #1a1408;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.14s ease;
+}
+
+.btn-primary {
+  padding: 14px 34px;
+  font-size: 16px;
+}
+
+.btn-end {
+  padding: 11px 22px;
+  font-size: 14px;
+}
+
+.btn-primary:hover,
+.btn-end:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+}
+
+.btn-primary:active,
+.btn-end:active {
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   Title Screen
+   ========================================================================== */
+
+.screen-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.title-card {
+  max-width: 780px;
+  width: 100%;
+  text-align: center;
+  padding: 36px 32px;
+  border-radius: 18px;
+  background: rgba(12, 22, 18, 0.88);
+  border: 2px solid var(--brass-dim);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
+}
+
+.title-crest {
+  font-size: 26px;
+  letter-spacing: 0.45em;
+  color: var(--brass);
+  margin-bottom: 10px;
+}
+
+.title-heading {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(42px, 7vw, 68px);
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  text-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+}
+
+.title-subtitle {
+  margin: 10px 0 24px;
+  font-size: 17px;
+  color: var(--text-dim);
+}
+
+.house-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.legend-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid var(--house, var(--brass-dim));
+}
+
+.legend-glyph {
+  font-size: 26px;
+  line-height: 1;
+  color: var(--house);
+}
+
+.legend-name {
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+}
+
+.legend-combo {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.title-howto {
+  margin: 0 0 26px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   Duel Table Layout & Plates
+   ========================================================================== */
+
+.screen-table {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 6px;
+  max-width: 1120px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 8px 18px 10px;
+}
+
+.plate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: rgba(10, 19, 15, 0.86);
+  border: 1.5px solid var(--brass-dim);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.duelist-id {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-disc {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: Georgia, serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--brass);
+  background: radial-gradient(circle at 35% 30%, #2c3e35, #111915);
+  border: 2px solid var(--brass);
+}
+
+.duelist-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.duelist-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.duelist-name {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+}
+
+.hp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hp-bar {
+  position: relative;
+  width: 170px;
+  height: 22px;
+  border-radius: 11px;
+  background: #231616;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.hp-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--hp-red) 0%, var(--hp-red-hi) 100%);
+  transition: width 0.25s ease;
+}
+
+.hp-text {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
+.shield-badge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--shield-blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.weak-badge {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #6c3483;
+  color: #f5eef8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.intent-badge {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f6d365 0%, #fda085 100%);
+  color: #1f1407;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px rgba(253, 160, 133, 0.28);
+  border: 1.5px solid #fff3cf;
+}
+
+.intent-badge[data-intent='guard'] {
+  background: linear-gradient(180deg, #74b9ff 0%, #2e86de 100%);
+  color: #07192b;
+}
+
+.intent-badge[data-intent='drain'] {
+  background: linear-gradient(180deg, #d291ff 0%, #8e44ad 100%);
+  color: #fff;
+}
+
+.intent-badge[data-intent='surge'] {
+  background: linear-gradient(180deg, #7bed9f 0%, #27ae60 100%);
+  color: #072212;
+}
+
+.rival-hand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rival-hand {
+  display: flex;
+  align-items: center;
+}
+
+.rival-hand .card-back + .card-back {
+  margin-left: -14px;
+}
+
+.count-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.player-resources {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.energy-pips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.energy-orb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--brass);
+  background: rgba(212, 175, 55, 0.14);
+}
+
+.energy-orb.filled {
+  background: radial-gradient(circle at 35% 30%, #fff3b0, var(--brass));
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.65);
+}
+
+.energy-label {
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brass);
+}
+
+.pile-counts {
+  display: flex;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Center Felt: Stage, Combo Banner & Log
+   ========================================================================== */
+
+.table-center {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  align-items: center;
+  gap: 16px;
+  padding: 2px 8px;
+  min-height: 0;
+}
+
+.stage-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 0;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-width: 126px;
+  min-height: 162px;
+}
+
+.stage-placeholder {
+  width: 120px;
+  height: 158px;
+  border-radius: 12px;
+  border: 2px dashed rgba(212, 175, 55, 0.32);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.55);
+}
+
+.stage .card {
+  transform: scale(0.98);
+  animation: stageSnap 0.22s ease-out;
+  cursor: default;
+}
+
+.combo-banner {
+  padding: 5px 15px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d4af37, #f3d87a, #d4af37);
+  color: #1f1404;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  animation: comboPop 0.28s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+
+.combat-log {
+  margin: 0;
+  padding: 9px 14px 9px 26px;
+  border-radius: 12px;
+  background: rgba(8, 15, 12, 0.72);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 76px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--text-dim);
+}
+
+.combat-log li:last-child {
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Hand & Cards
+   ========================================================================== */
+
+.table-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hand {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 168px;
+  padding: 6px 12px 2px;
+}
+
+.card {
+  position: relative;
+  width: 120px;
+  height: 160px;
+  padding: 0;
+  border-radius: 11px;
+  border: 2.5px solid var(--house, var(--brass));
+  background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-edge) 100%);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: center;
+  font-family: inherit;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.48);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+  animation: dealIn 0.24s ease-out;
+}
+
+.hand .card {
+  transform: rotate(var(--fan-angle, 0deg)) translateY(var(--fan-y, 0px));
+}
+
+.hand .card + .card {
+  margin-left: 6px;
+}
+
+.hand .card:not(.unaffordable):hover,
+.hand .card:not(.unaffordable):focus-visible {
+  transform: translateY(-14px) scale(1.06) rotate(0deg);
+  z-index: 10;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.6), 0 0 0 2px var(--brass);
+  outline: none;
+}
+
+.card.unaffordable {
+  filter: grayscale(0.78) opacity(0.56);
+  cursor: not-allowed;
+}
+
+.card-band {
+  position: relative;
+  height: 30px;
+  background: var(--house);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-cost {
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 3px;
+}
+
+.cost-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.88);
+  background: transparent;
+}
+
+.cost-pip.filled {
+  background: #fff;
+}
+
+.card-glyph {
+  font-size: 22px;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.card-key {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.34);
+  color: #fff;
+}
+
+.card-watermark {
+  position: absolute;
+  inset: 36px 0 0 0;
+  display: grid;
+  place-items: center;
+  font-size: 86px;
+  color: var(--house);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.card-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 7px 6px;
+}
+
+.card-power {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.card-kind {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: var(--house);
+}
+
+.card-name {
+  font-family: Georgia, serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.card-text {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--ink-muted);
+}
+
+/* Card Back */
+
+.card-back {
+  width: 34px;
+  height: 48px;
+  border-radius: 6px;
+  border: 1.5px solid var(--brass);
+  background: linear-gradient(135deg, #1b2d24 0%, #0f1a14 100%);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+.card-back-diamond {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--brass);
+  opacity: 0.88;
+}
+
+/* ==========================================================================
+   Game Over Screen
+   ========================================================================== */
+
+.screen-over {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.over-card {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 44px;
+  border-radius: 18px;
+  background: rgba(12, 22, 18, 0.92);
+  border: 2px solid var(--brass);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+.over-title {
+  margin: 0 0 10px;
+  font-family: Georgia, serif;
+  font-size: clamp(44px, 8vw, 72px);
+  letter-spacing: 0.12em;
+}
+
+.over-title.victory {
+  color: var(--brass);
+}
+
+.over-title.defeat {
+  color: var(--hp-red-hi);
+}
+
+.over-stats {
+  margin: 0 0 26px;
+  font-size: 17px;
+  color: var(--text-dim);
+}
+
+.flourish {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flourish-ring-glyph {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--house, var(--brass));
+  opacity: 0.95;
+  text-shadow: 0 0 18px var(--house, var(--brass)), 0 2px 6px rgba(0, 0, 0, 0.7);
+  transform: translate(calc(-50% + var(--rx, 0px)), calc(-50% + var(--ry, 0px)));
+}
+
+.flourish-glyph {
+  position: absolute;
+  bottom: -40px;
+  font-size: 32px;
+  color: var(--house, var(--brass));
+  opacity: 0;
+  animation: glyphFloat 3.2s ease-out infinite;
+}
+
+/* ==========================================================================
+   Animations & Screenshot Determinism
+   ========================================================================== */
+
+@keyframes dealIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stageSnap {
+  from {
+    opacity: 0.4;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes comboPop {
+  0% {
+    transform: scale(0.78);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes glyphFloat {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-85vh) scale(1.25);
+    opacity: 0;
+  }
+}
+
+body.shot * {
+  animation: none !important;
+  transition: none !important;
+}
+
+body.shot .flourish-glyph {
+  display: none;
+}
